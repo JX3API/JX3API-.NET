@@ -1,3 +1,5 @@
+> [!CAUTION]
+> Only C# .net 6.0 or later versions are supported
 # JX3API.NET
 The C#.net6.0+ SDK to the JX3API.
 # Installation
@@ -15,13 +17,18 @@ nuget searches for the JX3API
 
 ## Quick Start
 > And don't copy it exactly the same
+![DS~5$(H Y@~H~)3(Y(A5Y47](https://github.com/user-attachments/assets/59e85926-7f1a-484e-964d-bf145bbd879a)
+
 ```C#
 using JX3API.NET;
 
 // Configure basic authentication
 private void config()
 {
-    Jx3Api.Jx3ApiToken = "";  // Configure the token of the jx3 API
+    Jx3Api.Jx3ApiUrl = "https://www.jx3api.com";
+    Jx3Api.Jx3ApiWsUrl = "wss://socket.nicemoe.cn";
+    Jx3Api.Jx3ApiTokenV1 = "";  // Configure the tokenV1 of the jx3 API 
+    Jx3Api.Jx3ApiTokenV2 = "";  // Configure the tokenV2 of the jx3 API 
     Jx3Api.Jx3ApiTicket = ""; // Configure tuilan ticket
     Jx3Api.Jx3ApiWssToken = ""; // Configure the wsstoken of the jx3 API 
 }
@@ -56,7 +63,7 @@ private void WssSend()
  {
      public WssReception()
      {
-         common._WebSocketMessageReceived += async (data) =>
+         JX3APISocket._WebSocketMessageReceived += async (data) =>
          {
              Console.WriteLine(data);
              int action = (int)data["action"];
